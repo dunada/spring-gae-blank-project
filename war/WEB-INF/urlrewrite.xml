@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.2//EN"
+        "http://tuckey.org/res/dtds/urlrewrite3.2.dtd">
+<!-- Configuration file for UrlRewriteFilter http://tuckey.org/urlrewrite/ -->
+<urlrewrite>
+	
+	<!-- ############################################### -->
+	<!-- ###################  ADMIN  ################### -->
+	<!-- ############################################### -->
+	
+	<rule>
+		<from>^/admin$</from>
+		<to>/admin/index.action</to>
+	</rule>
+	
+	<rule>
+		<from>^/admin/login$</from>
+		<to>/admin/login.action</to>
+	</rule>
+	
+	<rule>
+		<from>^/admin/login/callback$</from>
+		<to>/admin/login/callback.action</to>
+	</rule>
+	
+	<rule>
+		<from>^/admin/logout$</from>
+		<to>/admin/logout.action</to>
+	</rule>
+	
+	<rule>
+		<from>^/admin/startdb$</from>
+		<to>/admin/startdb.action</to>
+	</rule>
+	
+	<rule>
+		<from>^/admin/user_admin$</from>
+		<to>/admin/user_admin/index.action</to>
+	</rule>
+	
+	<rule>
+		<from>^/admin/user_admin/detail(/?$|/([0-9]*)$)</from>
+		<to>/admin/user_admin/detail.action?id=$2</to>
+	</rule>
+	
+	<rule>
+		<from>^/admin/user_admin/delete/([0-9]*)$</from>
+		<to>/admin/user_admin/delete.action?id=$1</to>
+	</rule>
+	
+
+</urlrewrite>
+
