@@ -7,7 +7,10 @@ import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.util.StringUtils;
+
+
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.blank.util.enumerator.JsonSerializerEnum;
 
@@ -71,8 +74,11 @@ public class JsonView {
 	
 	public void error(String message){
 		try {
-			this.response.sendError(503, message);
-		} catch (IOException e) {
+			this.response.setStatus(503);
+			if(StringUtils.isNotBlank(message)){
+				this.response.getWriter().write(message);
+			}
+		} catch (Exception e) {
 			log.log(Level.SEVERE, "JSON write error",e);
 		}
 	}
