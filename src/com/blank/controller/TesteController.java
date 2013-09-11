@@ -22,10 +22,10 @@ public class TesteController {
 	public void um(HttpServletResponse response) throws Exception {
 		JsonView view = new JsonView(response, JsonSerializerEnum.TESTE1);
 		try{
-			view.addObject("userAdmin",userAdminService.find(null, null, 5, 1).get(0));
-			view.setResult(true);	
-		}catch(ServiceException se){
-			view.setResult(false);
+			view.addObject("userAdmin",userAdminService.find(null, null, null, 1).get(0));
+			view.success();
+		}catch(ServiceException e){
+			view.error(e.getMessage());
 		}
 	}
 	
@@ -34,9 +34,9 @@ public class TesteController {
 		JsonView view = new JsonView(response, JsonSerializerEnum.TESTE2);
 		try{
 			view.setData(userAdminService.find(null, null, null, null));
-			view.setResult(true);	
-		}catch(ServiceException se){
-			view.setResult(false);
+			view.success();
+		}catch(ServiceException e){
+			view.error(e.getMessage());
 		}
 	}
 	
@@ -44,20 +44,12 @@ public class TesteController {
 	public void tres(HttpServletResponse response) throws Exception {
 		JsonView view = new JsonView(response, JsonSerializerEnum.TESTE3);
 		try{
-			view.setData(userAdminService.find(null, null, 5, 1).get(0));
-			view.setResult(true);	
-		}catch(Exception se){
-			view.setResult(false);
+			view.setData(userAdminService.find(null, null, null, 1).get(0));
+			view.success();
+		}catch(ServiceException e){
+			view.error(e.getMessage());
 		}
 	}
 	
-	@RequestMapping("4")
-	public void quatro(HttpServletResponse response) throws Exception {
-		JsonView view = new JsonView(response, JsonSerializerEnum.WITHOUT_DATA);
-		try{
-			view.setResult(true,"mensagem");	
-		}catch(Exception se){
-			view.setResult(false);
-		}
-	}
+
 }

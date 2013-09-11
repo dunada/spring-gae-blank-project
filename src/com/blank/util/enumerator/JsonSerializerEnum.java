@@ -9,29 +9,20 @@ import flexjson.JSONSerializer;
 import flexjson.transformer.DateTransformer;
 
 public enum JsonSerializerEnum {
-	WITHOUT_DATA(null, new JSONSerializer().include(
-		"result.success",
-		"result.message"
-		).exclude("*")),
+	WITHOUT_DATA(null, new JSONSerializer()),
 	TESTE1(new TesteResult(), new JSONSerializer().include(
-		"result.success",
-		"result.message",
-		"data.userAdmin.name",
-		"data.userAdmin.createdAt",
-		"data.userAdmin.email"
+		"userAdmin.name",
+		"userAdmin.createdAt",
+		"userAdmin.email"
 		).exclude("*")
 		.transform(new DateTransformer("dd/MM/yyyy HH'h'mm"), "data.userAdmin.createdAt")),
 	TESTE2(null, new JSONSerializer().include(
-		"result.success",
-		"result.message",
-		"data.name",
-		"data.email"
+		"name",
+		"email"
 		).exclude("*")),
 	TESTE3(null, new JSONSerializer().include(
-		"result.success",
-		"result.message",
-		"data.name",
-		"data.email"
+		"name",
+		"email"
 		).exclude("*"));
 	
 	

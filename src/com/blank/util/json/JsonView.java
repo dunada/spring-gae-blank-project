@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.util.StringUtils;
 
 import com.blank.util.enumerator.JsonSerializerEnum;
-import com.blank.util.json.vo.JsonResult;
-import com.blank.util.json.vo.Result;
 
 
 
@@ -26,7 +24,7 @@ public class JsonView {
 	
 	HttpServletResponse response;
 	
-	private JsonResult jsonResult = new JsonResult();
+	private Object data;
 	
 	public JsonSerializerEnum serializer;
 
@@ -56,15 +54,14 @@ public class JsonView {
 		} catch (Exception e) {
 			log.log(Level.SEVERE, "JSON set data error",e);
 		}
-		this.jsonResult.setData(serializer.getObject());
+        data = serializer.getObject();
 	}
 	
 	public void setData(Object data){
-		this.jsonResult.setData(data);
+		this.data=data;
 	}
 	
-	public void setResult(boolean result){
-		this.jsonResult.setResult(new Result(result));
+	public void success(){
 		try {
 			this.response.getWriter().write(this.getJson());
 		} catch (IOException e) {
@@ -72,16 +69,15 @@ public class JsonView {
 		}
 	}
 	
-	public void setResult(boolean result, String message){
-		this.jsonResult.setResult(new Result(result, message));
+	public void error(String message){
 		try {
-			this.response.getWriter().write(this.getJson());
+			this.response.sendError(503, message);
 		} catch (IOException e) {
 			log.log(Level.SEVERE, "JSON write error",e);
 		}
 	}
 	
 	public String getJson(){
-		return serializer.getSerializer().serialize(jsonResult);
+		return serializer.getSerializer().serialize(data);
 	}
 }

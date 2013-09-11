@@ -26,14 +26,14 @@
 		    <param-name>statusEnabled</param-name>
 		    <param-value>false</param-value>
 	    </init-param>
-	    <init-param>
+	    <!-- <init-param>
 	        <param-name>logLevel</param-name>
 	        <param-value>DEBUG</param-value>
 	    </init-param>
 	    <init-param>
 	        <param-name>confReloadCheckInterval</param-name>
 	        <param-value>5</param-value>
-	    </init-param>
+	    </init-param> -->
 	</filter>
 	<filter-mapping>
 		<filter-name>UrlRewriteFilter</filter-name>
